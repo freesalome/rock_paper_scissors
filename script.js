@@ -18,17 +18,15 @@ const outcomeDiv = document.querySelector('.outcome');
 const pScore = document.querySelector('.player-score');
 const cScore = document.querySelector('.computer-score')
 
+const p = document.createElement('p');
+
 function playRound(humanChoice, computerChoice) {
     const winMessage = `You win! ${humanChoice} beats ${computerChoice}`;
     const loseMessage = `You lose! ${computerChoice} beats ${humanChoice}`;
     const tieMessage = "It's a tie!";
 
-    const p = document.createElement('p');
-
     if(humanChoice === computerChoice) {
-        // const p = document.createElement('p');
-        p.innerText = `${tieMessage}`;
-        console.log(tieMessage);
+        p.innerText = `${tieMessage} You both selected ${humanChoice}`;
     }
     else if (
         (humanChoice === "rock" && computerChoice === "scissors") ||
@@ -36,17 +34,13 @@ function playRound(humanChoice, computerChoice) {
         (humanChoice === "scissors" && computerChoice === "paper")
     ) {
         humanScore++;
-        // const p = document.createElement('p');
         pScore.innerText = `Player Score: ${humanScore}`;
         p.innerText = `${winMessage}`;
-        console.log(winMessage);
     }
     else {
         computerScore++;
         cScore.innerText = `Computer Score: ${computerScore}`;
-        // const p = document.createElement('p');
         p.innerText = `${loseMessage}`;
-        console.log(loseMessage);
     }
     outcomeDiv.appendChild(p);
     const h2 = document.createElement('h2');
@@ -59,11 +53,7 @@ function playRound(humanChoice, computerChoice) {
         h2.innerText = `Computer wins. Score ${humanScore} - ${computerScore}`;
         outcomeDiv.appendChild(h2);
         endGame();
-    }   
-}
-
-function countScore() {
-
+    }  
 }
 
 function endGame() {
@@ -98,8 +88,6 @@ scissorsButton.addEventListener('click', () => {
     const playerSelection = 'scissors';
     playRound(playerSelection, computerSelection);
 });
-
-
 
 // function playGame() {
 //     // for (let i = 0; i < 5; i++) {
